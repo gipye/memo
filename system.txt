@@ -1,0 +1,15 @@
+tty 실행
+ctrl + alt + [F1 / F2 / F3 / F4 / F5 / F6]
+F1, F2는 GUI
+F1에서 로그인하면 F2로 되고, 로그인 안하고 바로 F2로 넘어갈 수 있음
+나머지는 콘솔창
+
+
+gdm 조작
+sudo service gdm3 restart
+sudo service gdm3 start
+sudo service gdm3 stop
+
+
+
+bash 명령어: .sh 확장자 파일을 이용해 설치

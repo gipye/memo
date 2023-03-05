@@ -1,0 +1,20 @@
+가상환경 conda
+conda create -n "가상환경이름"		: 가상환경 생성
+conda activate [가상환경이름]		: 가상환경 실행
+conda remove --name "가상환경이름" --all	: 가상환경 삭제
+conda install "패키지명"[="버전"]		: 패키지 설치
+conda search "패키지명"			: 현재 패키지 검색
+
+
+
+
+
+파이썬 가상환경 pip
+python -m venv "가상환경이름"		: 가상환경 생성
+
+# 가상환경 실행은 위 명령어로 생성된 디렉토리에 있는 파일로 실행
+source bin/activate				: 가상황경 실행
+
+conda install pip(아나콘다 환경에서 pip로 패키지 설치하려면 먼저 수행해야 함!!!!)
+pip install "패키지명"[=="버전"]		: 패키지 설치 (위 명령어 먼저 수행 후 수행)
+pip install -r requirements.txt		: 파일을 이용한 패키지 설치 (위위 명령어 먼저 수행 후 수행)

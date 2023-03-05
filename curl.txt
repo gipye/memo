@@ -1,0 +1,46 @@
+curl [options ... ] "url"			: 프로토콜을 이용해 url로 데이터 전송, 서버에 데이터 보내거나 가져올 때 사용
+기본값은 GET 요청
+
+
+
+POST 메소드로 json 데이터를 보낼 경우
+curl -d '{ "key1": "value1", "key2": "value2" }'	: POST 요청 데이터 입력
+-H "Content-Type: application/json"		: 전송할 헤더를 지정, 여기선 json 형식
+-X POST					: GET, POST, PUT, PATCH, DELETE 중 선택, 여기선 POST, 기본값은 application/x-www-form-urlencoded
+"url"					: url
+
+
+
+파일 다운로드
+curl -O "url/파일명"		(-O 옵션으로 원래 파일명 그대로 다운로드)
+curl -o "파일명" "url/파일명"		(-o 옵션으로 파일 이름을 새정의하여 다운로드)
+curl -C -O "url/파일명"		(-C 옵션으로 다운로드 재개, 다운로드가 중단됐을 경우 사용)
+
+
+
+
+
+인증 전달
+-u 옵션 사용
+예) curl -u "username:password" "url"
+
+
+
+헤더 보기
+  -I: 헤더만 가져오기
+  -i: 헤더와 바디 가져오기
+예) curl -I google.com
+
+
+
+요청 상세보기
+-v 또는 --trace 옵션 사용: 어떤 이유로 curl이 실패하고 원인 파악할 때 사용, --trace가 더 자세한 정보
+
+
+
+쿠키 보내기 (쿠키는 key=value 쌍으로 되어있다 !!!!)
+# Cookie key=value 쌍을 서버로 전송
+curl -b "key=value" "url"		(직접 쿠키 내용을 작성하여 전송)
+curl -b "파일명" "url"		(파일에 저장된 쿠키 내용을 전송)
+curl -b "전송할쿠키파일명" -c "새파일명" "url"		(-b 옵션으로 쿠키를 전송, -c 옵션으로 새로 생성된 쿠키를 파일로 저장)
+curl -D "파일명" "url		(-D 옵션으로 HTTP 헤더를 "파일명" 파일에 기록, 헤더에는 쿠키 정보도 포함됨)
