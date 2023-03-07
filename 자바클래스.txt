@@ -1,0 +1,65 @@
+BufferedReader
+
+java.io.BufferedReader	: 생성자 BufferedReader(InputStreamReader)
+	- 메소드
+	 String readLine()
+
+java.io.InputStreamReader	: 생성자 InputStreamReader(System.in)
+java.IOException		: BufferedReader 쓰려면 이 객체를 쓰는 함수에 throws IOException
++
+java.util.StringTokenizer	: 생성자 StringTokenizer(BufferedReader)
+	- 메소드
+	 String nextToken(String : default=" ")
+
+=>	BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+	StringTokenizer st = new StringTokenizer(br.readLine());
+	//StringTokenizer.nextToken()은 String 형을 반환
+	//int 변수에 넣으려면
+	int a = Integer.parseInt(st.nextToken(" "));
+
+
+
+
+StringBuilder
+
+java.lang.StringBuilder	: 생성자 StringBuilder()
+	- 메소드
+	 void append(String)	//매개변수 정수도 됨
+	 String toString()
+
+=>	StringBuilder sb = new StringBuilder();
+	sb.append("Hello World\n");
+	System.out.println(sb.toString());
+
+
+
+
+Queue
+
+java.util.LinkedList		: 생성자 LinkedList<E>()
+java.util.Queue		: 생성자 LinkedList<E>()
+	- 메소드
+	 boolean offer(E e)		// 큐 삽입, 성공여부 반환
+	 E poll()
+	 int size()
+	 boolean isEmpty()
+	 boolean contains(Object o)
+		// 큐에 있는 객체인지 확인,
+	 	// 이때 (기본 자료형이 아닐 시) 객체의 주소로 비교 !!!!
+		// 특히 Integer 등 객체 비교 시 실수 많음!!
+	 void clear()
+
+우선순위 큐
+java.util.Collections
+java.util.PriorityQueue	: 생성자 PriorityQueue<E>()
+			 or PriorityQueue<E>(Collections.reverseOrder())
+			 or 매개변수로 Comparator<T> 객체 (compare() 오버라이딩해서)
+			 or 매개변수로 Comparable<T> 객체 (compareTo() 오버라이딩해서)
+			 등등
+	- 메소드는 일반 큐와 동일
+
+
+
+
+정렬
+java.util.Comparator	: 생성자 Comparator<T>()
