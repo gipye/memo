@@ -1,6 +1,5 @@
-BufferedReader
-
-java.io.BufferedReader	: 생성자 BufferedReader(InputStreamReader)
+입력
+java.io.BufferedReader		: 생성자 BufferedReader(InputStreamReader)
 	- 메소드
 	 String readLine()
 
@@ -20,8 +19,7 @@ java.util.StringTokenizer	: 생성자 StringTokenizer(BufferedReader)
 
 
 
-StringBuilder
-
+문자열
 java.lang.StringBuilder	: 생성자 StringBuilder()
 	- 메소드
 	 void append(String)	//매개변수 정수도 됨
@@ -34,10 +32,9 @@ java.lang.StringBuilder	: 생성자 StringBuilder()
 
 
 
-Queue
-
+큐
 java.util.LinkedList		: 생성자 LinkedList<E>()
-java.util.Queue		: 생성자 LinkedList<E>()
+java.util.Queue			: 생성자 LinkedList<E>()
 	- 메소드
 	 boolean offer(E e)		// 큐 삽입, 성공여부 반환
 	 E poll()
@@ -54,12 +51,58 @@ java.util.Collections
 java.util.PriorityQueue	: 생성자 PriorityQueue<E>()
 			 or PriorityQueue<E>(Collections.reverseOrder())
 			 or 매개변수로 Comparator<T> 객체 (compare() 오버라이딩해서)
-			 or 매개변수로 Comparable<T> 객체 (compareTo() 오버라이딩해서)
-			 등등
 	- 메소드는 일반 큐와 동일
+=> 	PriorityQueue<E> pq = new PriorityQueue<E>(new Comparator<E>() {
+		@Override
+		public int compare(E o1, E o2) {
+			// E 객체의 integer 속성의 값을 오름차순으로 우선순위 설정
+			return o1.integer - o2.integer;
+		}
+	});
 
 
 
 
 정렬
+작동방식: 리턴값이 양수면 위치 교환, 음수면 그대로, 이렇게 외우면 됨 !!
+
+*********************
+Comparator: 정렬할 때 오버라이딩 된 Comparator 객체를 인자로 전달
+Comparable: 클래스 자체를 정렬이 가능하게 만들어 줌
+*********************
+
 java.util.Comparator	: 생성자 Comparator<T>()
+	- compare 메소드를 오버라이딩 해서 사용하면 됨
+	 @Override
+	 int compare(T o1, T o2) {
+		 return o1.value - o2.value	 // value 속성 값이 작은 것을 우선순위로 정렬
+		 return o2.value - o1.value	 // value 속성 값이 큰 것을 우선순위로 정렬
+	 }
+
+java.lang.Comparable	: implements로 객체 내에서 compareTo() 메소드를 오버라이딩 해야 함
+	- compareTo 메소드를 오버라이딩
+	 @Override
+	 int compareTo(T o) {
+		 return this.value - o.value	// value 속성 값이 작은 것을 우선순위로 정렬
+		 return o.value - this.value	// value 속성 값이 큰 것을 우선순위로 정렬
+	 }
+
+
+
+
+비교
+equals 메소드 오버라이딩하면 리스트나 큐의 contains() 메소드 사용 가능
+
+@Override
+public boolean equals(Object object) {
+	if(o instanceof T) {
+		T o = (T) object;
+		return this.getIntegerValue() == o.getIntegerValue() && ...;
+		// or
+		return this.getStringValue().equals(o.getStringValue()) && ...;
+		// or
+		return (this.value1 == o.value1 && this.value2.equals(o.value2) && ...);
+		// 암튼 이런 식으로 짜면 됨
+	}
+	return false;
+}
